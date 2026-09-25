@@ -67,7 +67,6 @@ int main(void)
 
   while (1)
   {
-    /* Parte 1: se capturan dos flancos de subida consecutivos. */
     medicion_lista = 0;
     numero_flanco = 0;
     __HAL_TIM_SET_COUNTER(&htim2, 0);
@@ -77,12 +76,10 @@ int main(void)
 
     while (medicion_lista == 0)
     {
-      /* La captura se completa dentro de HAL_TIM_IC_CaptureCallback(). */
     }
 
     periodo_us = flanco2 - flanco1;
 
-    /* Parte 2: se transmite por UART el valor calculado. */
     if (periodo_us != 0U)
     {
       frecuencia_hz = TIMER_COUNTER_HZ / periodo_us;
@@ -181,7 +178,6 @@ static void MX_TIM1_Init(void)
   HAL_TIM_MspPostInit(&htim1);
 }
 
-/* PA0/TIM2_CH1: contador de 1 MHz para medir el período en microsegundos. */
 static void MX_TIM2_Init(void)
 {
   TIM_ClockConfigTypeDef sClockSourceConfig = {0};
@@ -216,7 +212,6 @@ static void MX_TIM2_Init(void)
     Error_Handler();
 }
 
-/* Interrupción cada 100 ms. Diez interrupciones forman un segundo. */
 static void MX_TIM6_Init(void)
 {
   TIM_MasterConfigTypeDef sMasterConfig = {0};
