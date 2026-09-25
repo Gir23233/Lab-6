@@ -128,7 +128,6 @@ void SystemClock_Config(void)
     Error_Handler();
 }
 
-/* PA8/TIM1_CH1: periodo 500 ms, 250 ms alto y 250 ms bajo. */
 static void MX_TIM1_Init(void)
 {
   TIM_MasterConfigTypeDef sMasterConfig = {0};
@@ -152,7 +151,7 @@ static void MX_TIM1_Init(void)
     Error_Handler();
 
   sConfigOC.OCMode = TIM_OCMODE_PWM1;
-  sConfigOC.Pulse = 2500;            /* 250 ms en alto */
+  sConfigOC.Pulse = 2500;            
   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
   sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
@@ -288,7 +287,6 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
   }
 }
 
-/* Parte 3: PB3 está 1 s apagado y 1 s encendido; período total 2 s. */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
   if (htim->Instance == TIM6)
